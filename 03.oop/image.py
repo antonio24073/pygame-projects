@@ -1,4 +1,3 @@
-
 import pygame
 
 
@@ -9,3 +8,6 @@ class Image:
         # self.rect = [posX,posY,tamX,tamY]
         self.rect[0] = x
         self.rect[1] = y
+
+    def move(self):
+       pass

@@ -9,7 +9,6 @@ class Ball(Image):
         self.dir_x = -10
         self.dir_y = 8
 
-    def move_ball(self):
+    def move(self):
         self.rect[0] += self.dir_x
         self.rect[1] += self.dir_y
-        self.draw()

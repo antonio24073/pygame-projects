@@ -10,10 +10,10 @@ class Game:
         self.bg = Image( "assets/field.png", 0, 0)
         self.window.add_item_to_draw(self.bg)
 
-        self.player1 = Player( "assets/player1.png", 50)
+        self.player1 = Player( "assets/player1.png", 50, 300, 1)
         self.window.add_item_to_draw(self.player1)
 
-        self.player2 = Player( "assets/player2.png", 1150)
+        self.player2 = Player( "assets/player2.png", 1150, 300, 2)
         self.window.add_item_to_draw(self.player2)
 
         self.ball = Ball("assets/ball.png", 617, 337)
