@@ -5,6 +5,11 @@ pygame.init()
 window = pygame.display.set_mode([1280, 720])
 title = pygame.display.set_caption("Futebol pong")
 
+score1 = 0
+score1_img = pygame.image.load("assets/score/0.png")
+score2 = 0
+score2_img = pygame.image.load("assets/score/0.png")
+
 field = pygame.image.load("assets/field.png")
 
 player1 = pygame.image.load("assets/player1.png")
@@ -20,6 +25,7 @@ ball_x = 617
 ball_y = 337
 ball_dir = -10
 ball_dir_y = 8
+
 
 def move_player():
     global player1_y
@@ -40,15 +46,21 @@ def move_player():
     elif player1_y >= 575:
         player1_y = 575
 
+
 def move_player2():
     global player2_y
-    player2_y = ball_y # fazendo segundo jogador defender todas
+    player2_y = ball_y  # fazendo segundo jogador defender todas
+
 
 def move_ball():
     global ball_x
     global ball_y
     global ball_dir
     global ball_dir_y
+    global score1
+    global score1_img
+    global score2
+    global score2_img
 
     ball_x += ball_dir
     ball_y += ball_dir_y
@@ -74,22 +86,32 @@ def move_ball():
     # if ball_x > 1280:
     #     ball_dir *= -1
 
-    if ball_x < -50: # caso jogador um perder
+    if ball_x < -50:  # caso jogador um perder
         ball_x = 617
         ball_y = 337
-        ball_dir_y *= -1 # inverter lado da bola ao reiniciar
-        ball_dir *= -1 # inverter lado da bola ao reiniciar
-    elif ball_x > 1320: # caso jogador dois perder
+        ball_dir_y *= -1  # inverter lado da bola ao reiniciar
+        ball_dir *= -1  # inverter lado da bola ao reiniciar
+        score2 += 1
+        score2_img = pygame.image.load("assets/score/" + str(score2) + ".png")
+        print(str(score2))
+    elif ball_x > 1320:  # caso jogador dois perder
         ball_x = 617
         ball_y = 337
         ball_dir_y *= -1
         ball_dir *= -1
+        score1 += 1
+        score1_img = pygame.image.load("assets/score/" + str(score1) + ".png")
+        print(str(score1))
+
 
 def draw():
-    window.blit(field, (0,0))
+    window.blit(field, (0, 0))
     window.blit(player1, (50, player1_y))
     window.blit(player2, (1150, player2_y))
     window.blit(ball, (ball_x, ball_y))
+    window.blit(score1_img, (500, 50))
+    window.blit(score2_img, (710, 50))
+
 
 ball = pygame.image.load("assets/ball.png")
 
@@ -117,6 +139,6 @@ while loop:
 
     move_player()
     move_player2()
-    draw()
     move_ball()
+    draw()
     pygame.display.update()
