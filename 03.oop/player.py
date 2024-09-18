@@ -25,6 +25,6 @@ class Player(Image):
 
         # print(player1_y)
         if self.rect[1] <= 0:
-            player1_y = 0
+            self.rect[1] = 0
         elif self.rect[1] >= 575:
-            player1_y = 575
+            self.rect[1] = 575
