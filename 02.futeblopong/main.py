@@ -120,7 +120,7 @@ def draw():
         move_ball()
 
     else:
-    window.blit(win, (300, 330))
+        window.blit(win, (300, 330))
 
 
 loop = True

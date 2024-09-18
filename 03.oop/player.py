@@ -29,5 +29,3 @@ class Player(Image):
             self.rect[1] = 0
         elif self.rect[1] >= 575:
             self.rect[1] = 575
-    def update_score(self):
-        pygame.image.load("assets/score/" + str(player2.score) + ".png")

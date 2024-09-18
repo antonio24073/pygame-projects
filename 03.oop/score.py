@@ -2,6 +2,6 @@ from image import Image
 
 
 class Score(Image):
-    def __init__(self, window, image, x, y):
-        super().__init__(window, image, x, y)
-        self.current = 0
+    def __init__(self, image, x, y):
+        super().__init__(image, x, y)
+

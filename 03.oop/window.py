@@ -11,7 +11,10 @@ class Window:
         self.loop = True
 
         self.items_to_draw = []
+        self.items_to_draw_win = []
         self.init_commands()
+
+        self.running = True
 
     def init_commands(self):
 
@@ -32,6 +35,13 @@ class Window:
         for item in self.items_to_draw:
             self.window.blit(item.image, (item.rect[0], item.rect[1]))
 
+    def add_item_to_draw_win(self, item):
+        self.items_to_draw_win.append(item)
+
+    def draw_win(self):
+        for item in self.items_to_draw_win:
+            self.window.blit(item.image, (item.rect[0], item.rect[1]))
+
     def move(self):
         for item in self.items_to_draw:
             self.move_function(item)
@@ -39,7 +49,7 @@ class Window:
     def set_move_function(self, move_function):
         if callable(move_function):
             self.move_function = move_function
-            
+
     def move_function(self):
         pass
 
@@ -69,9 +79,24 @@ class Window:
                 if events.key == pygame.K_DOWN:
                     self.player2_movedown = False
 
+    def set_score1(self, score1):
+        self.score1 = score1
+
+    def set_score2(self, score2):
+        self.score2 = score2
+
+    def is_running(self, running):
+        self.running = running
+
     def update(self):
         while self.loop:
-            self.draw()
-            self.move()
-            self.events()
-            pygame.display.update()
+            if self.running:
+                self.draw()
+                self.move()
+                self.events()
+                pygame.display.update()
+            else:
+                self.draw_win()
+                pygame.display.update()
+                pygame.time.wait(5000)
+                break
