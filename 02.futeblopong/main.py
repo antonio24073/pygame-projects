@@ -95,7 +95,7 @@ def move_ball():
         score2 += 1
         if score2 in range(10):
             score2_img = pygame.image.load("assets/score/" + str(score2) + ".png")
-        print(str(score2))
+        # print(str(score2))
     elif ball_x > 1320:  # caso jogador dois perder
         ball_x = 617
         ball_y = 337
@@ -104,7 +104,7 @@ def move_ball():
         score1 += 1
         if score1 in range(10):
             score1_img = pygame.image.load("assets/score/" + str(score1) + ".png")
-        print(str(score1))
+        # print(str(score1))
 
 
 def draw():

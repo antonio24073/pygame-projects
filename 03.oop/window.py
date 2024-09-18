@@ -11,7 +11,6 @@ class Window:
         self.loop = True
 
         self.items_to_draw = []
-
         self.init_commands()
 
     def init_commands(self):
@@ -26,19 +25,23 @@ class Window:
         self.player2_moveup = False
         self.player2_movedown = False
 
-
-    def add_item_to_draw(self, image):
-        self.items_to_draw.append(image)
-
+    def add_item_to_draw(self, item):
+        self.items_to_draw.append(item)
 
     def draw(self):
         for item in self.items_to_draw:
             self.window.blit(item.image, (item.rect[0], item.rect[1]))
-            if hasattr(item, 'player'):
-                if item.player == 1:
-                    item.move(self.player1_moveup, self.player1_movedown)
-                elif item.player == 2:
-                    item.move(self.player2_moveup, self.player2_movedown)
+
+    def move(self):
+        for item in self.items_to_draw:
+            self.move_function(item)
+
+    def set_move_function(self, move_function):
+        if callable(move_function):
+            self.move_function = move_function
+            
+    def move_function(self):
+        pass
 
     def events(self):
         for events in pygame.event.get():
@@ -69,5 +72,6 @@ class Window:
     def update(self):
         while self.loop:
             self.draw()
+            self.move()
             self.events()
             pygame.display.update()

@@ -7,6 +7,7 @@ class Player(Image):
         self.player = player
         self.move_up = False
         self.move_down = False
+        self.score = 0
 
     def move(self, move_up, move_down):
 
@@ -28,3 +29,5 @@ class Player(Image):
             self.rect[1] = 0
         elif self.rect[1] >= 575:
             self.rect[1] = 575
+    def update_score(self):
+        pygame.image.load("assets/score/" + str(player2.score) + ".png")
