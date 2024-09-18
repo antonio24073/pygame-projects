@@ -17,6 +17,7 @@ player2 = pygame.image.load("assets/player2.png")
 ball = pygame.image.load("assets/ball.png")
 ball_x = 617
 ball_y = 337
+ball_dir = -2
 
 def move_player():
     global player1_y
@@ -40,8 +41,15 @@ def move_player():
 def move_ball():
     global ball_x
     global ball_y
+    global ball_dir
 
-    ball_x += 1
+    ball_x += ball_dir
+
+    if ball_x < 120:
+        if player1_y < ball_y + 23:
+            if player1_y + 146 > ball_y:
+                ball_dir *= -1
+
 
 def draw():
     window.blit(field, (0,0))
@@ -66,6 +74,13 @@ while loop:
                 player1_moveup = False
             if events.key == pygame.K_s:
                 player1_movedown = False
+
+    # testando colisão primeiro jogador e bola
+    # if ball_x < 120:
+    #     print("jogador %s %s: " % ( player1_y,(player1_y + 146) ))
+    #     print("bola    %s %s: " % (ball_y, (ball_y + 23)))
+    #     loop = False
+
     move_player()
     draw()
     move_ball()
