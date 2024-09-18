@@ -57,20 +57,33 @@ def move_ball():
         if player1_y < ball_y + 23:
             if player1_y + 146 > ball_y:
                 ball_dir *= -1
-    if ball_x < 0:
-        ball_dir *= -1
 
     if ball_x > 1100:
         if player2_y < ball_y + 23:
             if player2_y + 146 > ball_y:
                 ball_dir *= -1
-    if ball_x > 1280:
-        ball_dir *= -1
 
     if ball_y > 680:
         ball_dir_y *= -1
     elif ball_y <= 40:
         ball_dir_y *= -1
+
+    # # teste fazer a bola rebater se passar do goleiro
+    # if ball_x < 0:
+    #     ball_dir *= -1
+    # if ball_x > 1280:
+    #     ball_dir *= -1
+
+    if ball_x < -50: # caso jogador um perder
+        ball_x = 617
+        ball_y = 337
+        ball_dir_y *= -1 # inverter lado da bola ao reiniciar
+        ball_dir *= -1 # inverter lado da bola ao reiniciar
+    elif ball_x > 1320: # caso jogador dois perder
+        ball_x = 617
+        ball_y = 337
+        ball_dir_y *= -1
+        ball_dir *= -1
 
 def draw():
     window.blit(field, (0,0))
