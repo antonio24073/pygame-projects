@@ -1,0 +1,2 @@
+def pulo():
+    print('Pular')
