@@ -5,10 +5,12 @@ pygame.init()
 window = pygame.display.set_mode([1280, 720])
 title = pygame.display.set_caption("Futebol pong")
 
+win = pygame.image.load("assets/win.png")
+
 score1 = 0
-score1_img = pygame.image.load("assets/score/0.png")
+score1_img = pygame.image.load("assets/score/"+str(score1)+".png")
 score2 = 0
-score2_img = pygame.image.load("assets/score/0.png")
+score2_img = pygame.image.load("assets/score/"+str(score2)+".png")
 
 field = pygame.image.load("assets/field.png")
 
@@ -92,7 +94,8 @@ def move_ball():
         ball_dir_y *= -1  # inverter lado da bola ao reiniciar
         ball_dir *= -1  # inverter lado da bola ao reiniciar
         score2 += 1
-        score2_img = pygame.image.load("assets/score/" + str(score2) + ".png")
+        if score2 in range (10):
+            score2_img = pygame.image.load("assets/score/" + str(score2) + ".png")
         print(str(score2))
     elif ball_x > 1320:  # caso jogador dois perder
         ball_x = 617
@@ -100,17 +103,24 @@ def move_ball():
         ball_dir_y *= -1
         ball_dir *= -1
         score1 += 1
-        score1_img = pygame.image.load("assets/score/" + str(score1) + ".png")
+        if score1 in range (10):
+            score1_img = pygame.image.load("assets/score/" + str(score1) + ".png")
         print(str(score1))
 
 
 def draw():
     window.blit(field, (0, 0))
-    window.blit(player1, (50, player1_y))
-    window.blit(player2, (1150, player2_y))
-    window.blit(ball, (ball_x, ball_y))
-    window.blit(score1_img, (500, 50))
-    window.blit(score2_img, (710, 50))
+    if score1 or score2 < 10:
+        window.blit(player1, (50, player1_y))
+        window.blit(player2, (1150, player2_y))
+        window.blit(ball, (ball_x, ball_y))
+        window.blit(score1_img, (500, 50))
+        window.blit(score2_img, (710, 50))
+        move_player()
+        move_player2()
+        move_ball()
+    else:
+        window.blit(win, (300, 330))
 
 
 ball = pygame.image.load("assets/ball.png")
@@ -137,8 +147,5 @@ while loop:
     #     print("bola    %s %s: " % (ball_y, (ball_y + 23)))
     #     loop = False
 
-    move_player()
-    move_player2()
-    move_ball()
     draw()
     pygame.display.update()
