@@ -1,5 +1,6 @@
 import pygame
 
+
 class Window:
 
     def __init__(self, sizex, sizey, title):
@@ -9,8 +10,10 @@ class Window:
 
         self.loop = True
 
-    def draw(self):
-        pass
+        self.list_obj = []
+
+    def add_obj(self, item):
+        self.list_obj.append(item)
 
     def events(self):
         for events in pygame.event.get():
@@ -19,7 +22,5 @@ class Window:
 
     def update(self):
         while self.loop:
-            self.draw()
             self.events()
             pygame.display.update()
-

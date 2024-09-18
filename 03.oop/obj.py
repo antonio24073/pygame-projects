@@ -8,5 +8,6 @@ class Obj:
         # self.rect = [posX,posY,tamX,tamY]
         self.rect[0] = x
         self.rect[1] = y
+
     def draw(self, window):
         window.blit(self.image, (self.rect[0], self.rect[1]))
