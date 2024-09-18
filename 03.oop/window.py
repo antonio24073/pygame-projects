@@ -10,10 +10,14 @@ class Window:
 
         self.loop = True
 
-        self.list_obj = []
+        self.items_to_draw = []
 
-    def add_obj(self, item):
-        self.list_obj.append(item)
+    def add_item_to_draw(self, item):
+        self.items_to_draw.append(item)
+
+    def draw(self):
+        for item in self.items_to_draw:
+            self.window.blit(item.image, (item.rect[0], item.rect[1]))
 
     def events(self):
         for events in pygame.event.get():
@@ -22,5 +26,6 @@ class Window:
 
     def update(self):
         while self.loop:
+            self.draw()
             self.events()
             pygame.display.update()

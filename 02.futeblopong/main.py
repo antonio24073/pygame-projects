@@ -8,9 +8,9 @@ title = pygame.display.set_caption("Futebol pong")
 win = pygame.image.load("assets/win.png")
 
 score1 = 0
-score1_img = pygame.image.load("assets/score/"+str(score1)+".png")
+score1_img = pygame.image.load("assets/score/" + str(score1) + ".png")
 score2 = 0
-score2_img = pygame.image.load("assets/score/"+str(score2)+".png")
+score2_img = pygame.image.load("assets/score/" + str(score2) + ".png")
 
 field = pygame.image.load("assets/field.png")
 
@@ -27,7 +27,6 @@ ball_x = 617
 ball_y = 337
 ball_dir = -10
 ball_dir_y = 8
-
 
 def move_player():
     global player1_y
@@ -94,7 +93,7 @@ def move_ball():
         ball_dir_y *= -1  # inverter lado da bola ao reiniciar
         ball_dir *= -1  # inverter lado da bola ao reiniciar
         score2 += 1
-        if score2 in range (10):
+        if score2 in range(10):
             score2_img = pygame.image.load("assets/score/" + str(score2) + ".png")
         print(str(score2))
     elif ball_x > 1320:  # caso jogador dois perder
@@ -103,7 +102,7 @@ def move_ball():
         ball_dir_y *= -1
         ball_dir *= -1
         score1 += 1
-        if score1 in range (10):
+        if score1 in range(10):
             score1_img = pygame.image.load("assets/score/" + str(score1) + ".png")
         print(str(score1))
 
@@ -119,11 +118,10 @@ def draw():
         move_player()
         move_player2()
         move_ball()
+
     else:
-        window.blit(win, (300, 330))
+    window.blit(win, (300, 330))
 
-
-ball = pygame.image.load("assets/ball.png")
 
 loop = True
 while loop:
